@@ -266,7 +266,7 @@ Thanks to the original Claude Code UI project.
 - **[Vite](https://vitejs.dev/)** - Fast build tool and dev server
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[CodeMirror](https://codemirror.net/)** - Advanced code editor
-- ** Forked project from cruzviapan/Gemini-CLI-UI
+
 ## Support & Community
 
 ### Stay Updated

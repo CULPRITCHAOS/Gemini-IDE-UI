@@ -1,13 +1,71 @@
 {
-  "name": "Gemini CLI UI",
-  "short_name": "Gemini UI",
-  "description": "Gemini CLI UI - A stylish web interface for Gemini",
+  "name": "Gemini CLI UI - AI Development Environment",
+  "short_name": "Gemini IDE",
+  "description": "AI-powered mobile development environment with Gemini. Code, build, and ship from anywhere.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0891b2",
-  "orientation": "portrait-primary",
+  "theme_color": "#8b5cf6",
+  "orientation": "any",
   "scope": "/",
+  "categories": ["development", "productivity", "utilities"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "New Chat",
+      "short_name": "Chat",
+      "description": "Start a new AI coding session",
+      "url": "/?action=newchat",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "File Explorer",
+      "short_name": "Files",
+      "description": "Browse and edit project files",
+      "url": "/?tab=files",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Git Panel",
+      "short_name": "Git",
+      "description": "Manage version control",
+      "url": "/?tab=git",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/mobile-chat.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "AI-powered coding assistant on mobile"
+    },
+    {
+      "src": "/screenshots/desktop-ide.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Full-featured development environment"
+    }
+  ],
   "icons": [
     {
       "src": "/icons/icon-72x72.png",

@@ -1,7 +1,7 @@
 {
   "name": "gemini-cli-ui",
-  "version": "2.0.0",
-  "description": "An AI-powered web-based UI for Gemini CLI with smart features",
+  "version": "2.1.0",
+  "description": "AI-powered mobile-first development environment for Gemini CLI with smart features and PWA support",
   "type": "module",
   "main": "server/index.js",
   "scripts": {

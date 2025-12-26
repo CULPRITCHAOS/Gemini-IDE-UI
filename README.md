@@ -58,6 +58,16 @@ A desktop and mobile UI [Gemini CLI](https://github.com/google-gemini/gemini-cli
 
 👉 **[See AI Features Documentation](AI_FEATURES.md)** for detailed information
 
+### 📱 NEW: Mobile-First Development
+- **👆 Touch Gestures** - Swipe, pinch-to-zoom, and long-press gestures for mobile coding
+- **⌨️ Mobile Code Editor** - Touch-optimized editor with quick action toolbar
+- **🎯 Build & Preview** - One-tap builds with live preview on multiple device sizes
+- **🎓 Interactive Onboarding** - Beautiful step-by-step mobile tutorial
+- **📱 PWA Support** - Install to home screen, works offline, app-like experience
+- **🔋 Battery Optimized** - Efficient mobile performance
+
+👉 **[See Mobile Guide](MOBILE_GUIDE.md)** for mobile development instructions
+
 ## Quick Start
 
 ### Prerequisites

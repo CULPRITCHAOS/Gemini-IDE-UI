@@ -61,12 +61,16 @@ A desktop and mobile UI [Gemini CLI](https://github.com/google-gemini/gemini-cli
 ### 📱 NEW: Mobile-First Development
 - **👆 Touch Gestures** - Swipe, pinch-to-zoom, and long-press gestures for mobile coding
 - **⌨️ Mobile Code Editor** - Touch-optimized editor with quick action toolbar
+- **🖥️ Mobile Terminal** - Touch-optimized terminal with quick actions, gestures, and adjustable font size
 - **🎯 Build & Preview** - One-tap builds with live preview on multiple device sizes
 - **🎓 Interactive Onboarding** - Beautiful step-by-step mobile tutorial
 - **📱 PWA Support** - Install to home screen, works offline, app-like experience
 - **🔋 Battery Optimized** - Efficient mobile performance
+- **📦 Native Android APK** - Convert to native Android app (4 methods included)
 
-👉 **[See Mobile Guide](MOBILE_GUIDE.md)** for mobile development instructions
+👉 **[See Mobile Guide](MOBILE_GUIDE.md)** for mobile development instructions  
+👉 **[See Mobile Terminal Guide](MOBILE_TERMINAL_GUIDE.md)** for terminal usage on mobile  
+👉 **[See Android APK Guide](ANDROID_APK_GUIDE.md)** for native app conversion
 
 ## Quick Start
 
@@ -154,6 +158,17 @@ The UI automatically discovers Gemini CLI projects from `~/.gemini/projects/` an
 - **Live File Editing** - Read, modify, and save files directly in the interface
 - **Syntax Highlighting** - Support for multiple programming languages
 - **File Operations** - Create, rename, delete files and directories
+
+#### Shell Terminal
+- **Integrated Terminal** - Full xterm.js terminal with PTY support
+- **Direct Gemini CLI Access** - Connect directly to Gemini CLI in your project directory
+- **Session Resume** - Continue previous Gemini sessions seamlessly
+- **Mobile Optimized** - Touch gestures, quick actions, and adjustable font size
+- **Command Execution** - Run any shell command in your project context
+- **Real-time Output** - Stream command output with full ANSI color support
+- **Copy & Paste** - Full clipboard support with keyboard shortcuts
+
+👉 **[Mobile Terminal Guide](MOBILE_TERMINAL_GUIDE.md)** for mobile-specific features
 
 #### Git Explorer
 - **Visualize Changes** - See current changes in real-time

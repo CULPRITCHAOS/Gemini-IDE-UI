@@ -4,6 +4,7 @@ import { promisify } from 'util';
 import path from 'path';
 import { promises as fs } from 'fs';
 import { extractProjectDirectory } from '../projects.js';
+import { generateSmartCommitMessage, reviewCodeChanges, analyzeCodeComplexity } from '../services/aiService.js';
 
 const router = express.Router();
 const execAsync = promisify(exec);
@@ -342,7 +343,7 @@ router.get('/commit-diff', async (req, res) => {
   }
 });
 
-// Generate commit message based on staged changes
+// Generate commit message based on staged changes (AI-Powered)
 router.post('/generate-commit-message', async (req, res) => {
   const { project, files } = req.body;
   
@@ -369,9 +370,8 @@ router.post('/generate-commit-message', async (req, res) => {
       }
     }
     
-    // Use AI to generate commit message (simple implementation)
-    // In a real implementation, you might want to use GPT or Claude API
-    const message = generateSimpleCommitMessage(files, combinedDiff);
+    // Use AI service to generate smart commit message
+    const message = await generateSmartCommitMessage(files, combinedDiff, projectPath);
     
     res.json({ message });
   } catch (error) {
@@ -688,6 +688,68 @@ router.post('/discard', async (req, res) => {
     res.json({ success: true, message: `Changes discarded for ${file}` });
   } catch (error) {
     // console.error('Git discard error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// AI-Powered Code Review
+router.post('/review-changes', async (req, res) => {
+  const { project, files } = req.body;
+  
+  if (!project || !files || files.length === 0) {
+    return res.status(400).json({ error: 'Project name and files are required' });
+  }
+
+  try {
+    const projectPath = await getActualProjectPath(project);
+    
+    // Get diff for selected files
+    let combinedDiff = '';
+    for (const file of files) {
+      try {
+        const { stdout } = await execAsync(
+          `git diff HEAD -- "${file}"`,
+          { cwd: projectPath }
+        );
+        if (stdout) {
+          combinedDiff += `\n--- ${file} ---\n${stdout}`;
+        }
+      } catch (error) {
+        console.error(`Error getting diff for ${file}:`, error);
+      }
+    }
+    
+    // Use AI service for code review
+    const review = await reviewCodeChanges(files, combinedDiff, projectPath);
+    
+    res.json({ review });
+  } catch (error) {
+    console.error('Code review error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Analyze code complexity for a file
+router.post('/analyze-complexity', async (req, res) => {
+  const { project, file } = req.body;
+  
+  if (!project || !file) {
+    return res.status(400).json({ error: 'Project name and file are required' });
+  }
+
+  try {
+    const projectPath = await getActualProjectPath(project);
+    const filePath = path.join(projectPath, file);
+    
+    // Read file content
+    const content = await fs.readFile(filePath, 'utf-8');
+    
+    // Analyze complexity
+    const metrics = await analyzeCodeComplexity(file, content);
+    
+    res.json({ metrics });
+  } catch (error) {
+    console.error('Complexity analysis error:', error);
     res.status(500).json({ error: error.message });
   }
 });

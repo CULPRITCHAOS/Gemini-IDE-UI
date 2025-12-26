@@ -38,6 +38,7 @@ A desktop and mobile UI [Gemini CLI](https://github.com/google-gemini/gemini-cli
 
 ## Features
 
+### Core Features
 - **Responsive Design** - Works seamlessly across desktop, tablet, and mobile so you can also use Gemini CLI from mobile
 - **Interactive Chat Interface** - Built-in chat interface for seamless communication with Gemini CLI
 - **Integrated Shell Terminal** - Direct access to Gemini CLI through built-in shell functionality
@@ -46,6 +47,16 @@ A desktop and mobile UI [Gemini CLI](https://github.com/google-gemini/gemini-cli
 - **Session Management** - Resume conversations, manage multiple sessions, and track history
 - **Model Selection** - Choose from multiple Gemini models including Gemini 2.5 Pro
 - **YOLO Mode** - Skip confirmation prompts for faster operations (use with caution)
+
+### 🚀 NEW: AI-Powered Features
+- **🧠 Smart Commit Messages** - AI-generated commit messages based on your code changes
+- **🛡️ Code Review Assistant** - Pre-commit AI code review with quality scoring and suggestions
+- **📊 Code Complexity Analyzer** - Real-time analysis of code complexity metrics
+- **⚡ Quick Actions Bar** - Context-aware smart suggestions based on your current work
+- **🏆 Achievement System** - Gamification to track your progress and motivate better coding habits
+- **✨ Intelligent Fallbacks** - All features work with or without API key using rule-based alternatives
+
+👉 **[See AI Features Documentation](AI_FEATURES.md)** for detailed information
 
 ## Quick Start
 
@@ -74,6 +85,13 @@ cp .env.example .env
 ```
 
 **Note**: The `.env` file has been removed for security. Always copy `.env.example` to `.env` when using and modify settings as needed.
+
+**Optional - Enable AI Features:**
+```bash
+# Add your Gemini API key to .env for enhanced AI features
+echo "GEMINI_API_KEY=your-api-key-here" >> .env
+```
+Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey). Note: AI features will work with rule-based fallbacks even without an API key!
 
 4. **Start the application:**
 ```bash

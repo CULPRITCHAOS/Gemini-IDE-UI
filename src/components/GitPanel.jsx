@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GitBranch, GitCommit, Plus, Minus, RefreshCw, Check, X, ChevronDown, ChevronRight, Info, History, FileText, Mic, MicOff, Sparkles, Download, RotateCcw, Trash2, AlertTriangle, Upload } from 'lucide-react';
+import { GitBranch, GitCommit, Plus, Minus, RefreshCw, Check, X, ChevronDown, ChevronRight, Info, History, FileText, Mic, MicOff, Sparkles, Download, RotateCcw, Trash2, AlertTriangle, Upload, Shield } from 'lucide-react';
 import { MicButton } from './MicButton.jsx';
 import { authenticatedFetch } from '../utils/api';
+import CodeReviewModal from './CodeReviewModal.jsx';
 
 function GitPanel({ selectedProject, isMobile }) {
   const [gitStatus, setGitStatus] = useState(null);
@@ -30,6 +31,7 @@ function GitPanel({ selectedProject, isMobile }) {
   const [isPushing, setIsPushing] = useState(false);
   const [isCommitAreaCollapsed, setIsCommitAreaCollapsed] = useState(isMobile); // Collapsed by default on mobile
   const [confirmAction, setConfirmAction] = useState(null); // { type: 'discard|commit|pull|push', file?: string, message?: string }
+  const [showCodeReview, setShowCodeReview] = useState(false);
   const textareaRef = useRef(null);
   const dropdownRef = useRef(null);
 
@@ -906,17 +908,28 @@ function GitPanel({ selectedProject, isMobile }) {
                       <span className="text-xs text-gray-500">
                         {selectedFiles.size} file{selectedFiles.size !== 1 ? 's' : ''} selected
                       </span>
-                      <button
-                        onClick={() => setConfirmAction({ 
-                          type: 'commit', 
-                          message: `Commit ${selectedFiles.size} file${selectedFiles.size !== 1 ? 's' : ''} with message: "${commitMessage.trim()}"?` 
-                        })}
-                        disabled={!commitMessage.trim() || selectedFiles.size === 0 || isCommitting}
-                        className="px-3 py-1 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-1"
-                      >
-                        <Check className="w-3 h-3" />
-                        <span>{isCommitting ? 'Committing...' : 'Commit'}</span>
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => setShowCodeReview(true)}
+                          disabled={selectedFiles.size === 0}
+                          className="px-3 py-1 text-sm bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-1 transition-colors"
+                          title="AI Code Review"
+                        >
+                          <Shield className="w-3 h-3" />
+                          <span>Review</span>
+                        </button>
+                        <button
+                          onClick={() => setConfirmAction({ 
+                            type: 'commit', 
+                            message: `Commit ${selectedFiles.size} file${selectedFiles.size !== 1 ? 's' : ''} with message: "${commitMessage.trim()}"?` 
+                          })}
+                          disabled={!commitMessage.trim() || selectedFiles.size === 0 || isCommitting}
+                          className="px-3 py-1 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-1"
+                        >
+                          <Check className="w-3 h-3" />
+                          <span>{isCommitting ? 'Committing...' : 'Commit'}</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                   </>
@@ -1183,6 +1196,14 @@ function GitPanel({ selectedProject, isMobile }) {
           </div>
         </div>
       )}
+
+      {/* Code Review Modal */}
+      <CodeReviewModal
+        isOpen={showCodeReview}
+        onClose={() => setShowCodeReview(false)}
+        selectedProject={selectedProject}
+        selectedFiles={selectedFiles}
+      />
     </div>
   );
 }
